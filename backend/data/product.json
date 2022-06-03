@@ -1,0 +1,155 @@
+[
+    {
+        "name": "sandisk",
+        "price": "45",
+        "description": "great memory card",
+        "ratings": 4.5,
+        "images": [{
+            "public_id": "products/dlfgjdf",
+            "url": "https://www.westerndigital.com/content/dam/store/en-us/assets/products/memory-cards/ultra-uhs-i-microsd/gallery/ultra-uhs-i-microsd-400gb.png.wdthumb.1280.1280.webp"
+        
+            
+            }],
+            "category": "Electronics",
+            "seller": "Ebay",
+            "stock": 50,
+            "numOfReviews": 32,
+            "reviews": []
+    },
+
+    {
+        "name": "mouse",
+        "price": "89",
+        "description": "great mouse",
+        "ratings": 4.5,
+        "images": [{
+            "public_id": "products/dlfgjdf",
+            "url": "https://cdn.shopify.com/s/files/1/2695/9506/products/REDRAGONM808MOUSE_1_110x110@2x.png?v=1591090815"
+        
+            
+            }],
+            "category": "Electronics",
+            "seller": "Reddragon",
+            "stock": 10,
+            "numOfReviews": 100,
+            "reviews": []
+    },
+
+    {
+        "name": "keyboard",
+        "price": "100",
+        "description": "great keyboard",
+        "ratings": 4.5,
+        "images": [{
+            "public_id": "products/dlfgjdf",
+            "url": "https://cdn.shopify.com/s/files/1/0021/1012/8230/products/8332-1_a12572f8-7345-4dfc-a37a-75319b4fe5ba_600x600.png?v=1568017378"
+        
+            
+            }],
+            "category": "Electronics",
+            "seller": "Reddragon",
+            "stock": 10,
+            "numOfReviews": 100,
+            "reviews": []
+    },
+
+    {
+        "name": "headset",
+        "price": "20",
+        "description": "great headset",
+        "ratings": 10,
+        "images": [{
+            "public_id": "products/dlfgjdf",
+            "url": "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/6bf0ed99c663954fafc930039201ed07/r/i/riingprorgb_01.jpg"
+        
+            
+            }],
+            "category": "Electronics",
+            "seller": "headset seller",
+            "stock": 10,
+            "numOfReviews": 520,
+            "reviews": []
+    },
+    {
+        "name": "headset",
+        "price": "20",
+        "description": "great headset",
+        "ratings": 10,
+        "images": [{
+            "public_id": "products/dlfgjdf",
+            "url": "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/6bf0ed99c663954fafc930039201ed07/r/i/riingprorgb_01.jpg"
+        
+            
+            }],
+            "category": "Electronics",
+            "seller": "headset seller",
+            "stock": 10,
+            "numOfReviews": 520,
+            "reviews": []
+    },
+    {
+        "name": "headset",
+        "price": "20",
+        "description": "great headset",
+        "ratings": 10,
+        "images": [{
+            "public_id": "products/dlfgjdf",
+            "url": "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/6bf0ed99c663954fafc930039201ed07/r/i/riingprorgb_01.jpg"
+        
+            
+            }],
+            "category": "Electronics",
+            "seller": "headset seller",
+            "stock": 10,
+            "numOfReviews": 520,
+            "reviews": []
+    },
+    {
+        "name": "headset",
+        "price": "20",
+        "description": "great headset",
+        "ratings": 10,
+        "images": [{
+            "public_id": "products/dlfgjdf",
+            "url": "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/6bf0ed99c663954fafc930039201ed07/r/i/riingprorgb_01.jpg"
+        
+            
+            }],
+            "category": "Electronics",
+            "seller": "headset seller",
+            "stock": 10,
+            "numOfReviews": 520,
+            "reviews": []
+    },
+    {
+        "name": "food",
+        "price": "20",
+        "description": "great food",
+        "ratings": 10,
+        "images": [{
+            "public_id": "products/dlfgjdf",
+            "url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Koskos.jpg"
+        
+            
+            },
+
+            {
+                "public_id": "products/dlfgjdf",
+                "url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Koskos.jpg"
+            },
+
+            {
+                "public_id": "products/dlfgjdf",
+                "url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Koskos.jpg"
+            }
+        ],
+            "category": "Food",
+            "seller": "food seller",
+            "stock": 10,
+            "numOfReviews": 520,
+            "reviews": []
+    }
+    
+
+
+]
