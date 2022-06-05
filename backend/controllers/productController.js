@@ -17,11 +17,12 @@ exports.newProduct = catchAsyncErrors( async (req, res, next) => {
 }
 )
 
-// get all products => /api/v1/products?keyword=apple
+// get all products => /api/v1/products?keyword=product
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 
     const apiFeatures = new APIFeatures(Product.find(), req.query)
                         .search()
+                        .filter()
 
     const products = await apiFeatures.query
 
