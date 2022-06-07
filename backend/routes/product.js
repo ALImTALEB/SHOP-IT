@@ -10,7 +10,10 @@ const { getProducts,
      } = require('../controllers/productController')
 
 
-router.get('/products', getProducts);
+     const { isAuthenticatedUser } = require('../middlewares/auth')
+
+
+router.get('/products',isAuthenticatedUser, getProducts);
 
 router.post('/admin/product/new', newProduct)
 
