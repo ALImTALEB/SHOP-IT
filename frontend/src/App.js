@@ -6,7 +6,7 @@ import Footer from './components/layout/Footer'
 import Home from './components/Home'
 
 
-function App() {
+const App =() =>{
   return (
     <Router>
     <div className="App">
