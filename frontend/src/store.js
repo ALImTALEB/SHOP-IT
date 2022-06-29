@@ -4,8 +4,10 @@ import thunk from 'redux-thunk'
 
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-const reducer = combineReducers({
+import { productsReducer } from './reducers/productsReducers'
 
+const reducer = combineReducers({
+    products: productsReducer
 })
 
 let initialState = {}

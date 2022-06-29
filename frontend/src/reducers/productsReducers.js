@@ -1,6 +1,6 @@
-/* eslint-disable no-undef */
-import { ALL_PRODUCTS_REQUEST } from '../constants/productConstants'
-export const productsReducer = (state = { products:[] }, action => {
+import { ALL_PRODUCTS_REQUEST, ALL_PRODUCTS_SUCCESS, ALL_PRODUCTS_FAIL, CLEAR_ERRORS } from '../constants/productConstants'
+
+export const productsReducer = (state = { products:[] }, action) => {
     switch(action.type) {
         case ALL_PRODUCTS_REQUEST:
             return {
@@ -8,20 +8,20 @@ export const productsReducer = (state = { products:[] }, action => {
                 products: []
             }
 
-            case 'ALL_PRODUCTS_SUCCESS':
+            case ALL_PRODUCTS_SUCCESS:
             return {
                 loading: false,
                 products: action.payload.products,
                 productsCount : action.payload.products
             }
 
-            case 'ALL_PRODUCTS_FAIL':
+            case ALL_PRODUCTS_FAIL:
             return {
                 loading: false,
                 error: action.payload
             }
 
-            case 'CLEAR_ERRORS':
+            case CLEAR_ERRORS:
             return {
                 ...state,
                 error: null
@@ -30,4 +30,4 @@ export const productsReducer = (state = { products:[] }, action => {
         default:
             return state
     }
-} )
+} 
