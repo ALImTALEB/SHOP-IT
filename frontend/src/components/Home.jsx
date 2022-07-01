@@ -7,6 +7,8 @@ import MetaData from "./layout/MetaData";
 import Product from "./product/Product";
 import Loader from "./layout/Loader";
 
+import { useParams } from "react-router-dom";
+
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from "../actions/productActions";
 import { useAlert } from "react-alert";
@@ -21,16 +23,19 @@ const Home = () => {
 
   const { loading, products, error, productsCount, resPerPage } = useSelector(state => state.products)
 
+  const params = useParams()
+  const {keyword} = params
+
 useEffect( () => {
 
   if (error) {
    return alert.error(error)
   }
   
-  dispatch(getProducts(currentPage))
+  dispatch(getProducts(keyword ,currentPage))
 
 
-}, [dispatch, alert ,error, currentPage])
+}, [dispatch, alert ,error ,keyword ,currentPage])
 
 const setCurrentPageNo = (pageNumber) => {
   setCurrentPage(pageNumber)
