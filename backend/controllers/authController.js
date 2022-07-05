@@ -6,10 +6,16 @@ const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmail')
 
 const crypto = require('crypto')
-const { send } = require('process')
+const cloudinary = require('cloudinary')
 
 // register a user => /api/v1/register
 exports.registerUser = catchAsyncErrors ( async(req, res, next) => {
+
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: 'avatars',
+        width: 150,
+        crop: "scale"
+    })
 
     const { name, email, password } = req.body
 
@@ -18,8 +24,8 @@ exports.registerUser = catchAsyncErrors ( async(req, res, next) => {
         email,
         password,
         avatar: {
-            public_id: 'avatar/jdfhgjkef',
-            url: 'https://scontent.ftun15-1.fna.fbcdn.net/v/t1.18169-9/13062505_537035953136166_3461174297813594061_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=174925&_nc_ohc=JCnpwjxXiaIAX9D6FAw&tn=d3hwOS7URAdjdK49&_nc_ht=scontent.ftun15-1.fna&oh=00_AT-dBkkbntmgLVv2h0D5ltrBUI8PL2siaWaW3Moz2Ixa2g&oe=62C4F428'
+            public_id: result.public_id,
+            url: result.secure_url
         }
     })
 
