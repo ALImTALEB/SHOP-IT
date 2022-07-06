@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer'
 import Home from './components/Home'
 import ProductDetails from './components/product/ProductDetails';
 import Login from './components/user/Login';
+import Register from './components/user/Register';
 
 const App =() =>{
   return (
@@ -21,6 +22,9 @@ const App =() =>{
 
 
      <Route path="/login" element={<Login />} />
+     <Route path="/register" element={<Register />} />
+
+
      </Routes>
      </div>
      <Footer />
