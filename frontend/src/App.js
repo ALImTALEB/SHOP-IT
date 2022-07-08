@@ -10,6 +10,7 @@ import Home from './components/Home'
 import ProductDetails from './components/product/ProductDetails';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
+import Profile from './components/user/Profile';
 
 import { loadUser } from './actions/userActions';
 import store from "./store"
@@ -26,13 +27,14 @@ const App =() =>{
       <Header />
       <div className="container container-fluid">
      <Routes>
-     <Route path="/" element={<Home />} />
+     <Route path="/" element={<Home />} exact />
      <Route path="/search/:keyword" element={<Home />} />
-     <Route path="/product/:id" element={<ProductDetails />} />
+     <Route path="/product/:id" element={<ProductDetails />} exact />
 
 
      <Route path="/login" element={<Login />} />
      <Route path="/register" element={<Register />} />
+     <Route path="/me" element={<Profile />} exact />
 
 
      </Routes>
