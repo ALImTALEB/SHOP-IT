@@ -9,6 +9,8 @@ import {
     REGISTER_USER_FAIL,
     LOAD_USER_REQUEST,
     LOAD_USER_SUCCESS,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAIL,
     LOAD_USER_FAIL,
 
     CLEAR_ERRORS
@@ -90,7 +92,24 @@ export const loadUser = () => async (dispatch) => {
     }
 }
 
+// logout user
+export const logout = () => async (dispatch) => {
+    try {
 
+       await axios.get('/api/v1/logout')
+
+        dispatch({
+            type: LOGOUT_SUCCESS,
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: LOGOUT_FAIL,
+            payload: error.response.data.message
+        })
+        
+    }
+}
 
 
 // clear errors
