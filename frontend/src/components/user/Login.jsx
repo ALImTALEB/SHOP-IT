@@ -23,11 +23,13 @@ const Login = () => {
     useEffect( () => {
 
         if(isAuthenticated) {
+          alert.success('Logged In successfully')
+
             navigate('/')
         }
 
         if(error) {
-            alert.error(error)
+            alert.error('INVALID EMAIL OR PASSWORD')
             dispatch(clearErrors())
         }
 

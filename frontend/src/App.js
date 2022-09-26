@@ -14,6 +14,7 @@ import Profile from './components/user/Profile';
 import UpdateProfile from './components/user/UpdateProfile';
 
 import ProtectedRoute from './components/route/ProtectedRoute';
+import UpdatePassword from './components/user/UpdatePassword';
 
 import { loadUser } from './actions/userActions';
 import store from "./store"
@@ -50,8 +51,17 @@ const App =() =>{
 <Route
      path="/me/update"
      element={
-      <ProtectedRoute isAdmin={true} >
+      <ProtectedRoute >
         <UpdateProfile />
+      </ProtectedRoute>
+     }
+    />
+
+<Route
+     path="/password/update"
+     element={
+      <ProtectedRoute >
+        <UpdatePassword />
       </ProtectedRoute>
      }
     />
