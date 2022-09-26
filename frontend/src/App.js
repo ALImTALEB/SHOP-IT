@@ -16,6 +16,8 @@ import UpdateProfile from './components/user/UpdateProfile';
 import ProtectedRoute from './components/route/ProtectedRoute';
 import UpdatePassword from './components/user/UpdatePassword';
 
+import ForgotPassword from './components/user/ForgotPassword';
+
 import { loadUser } from './actions/userActions';
 import store from "./store"
 
@@ -38,6 +40,7 @@ const App =() =>{
 
      <Route path="/login" element={<Login />} />
      <Route path="/register" element={<Register />} />
+     <Route path="/password/forgot" element={<ForgotPassword />} exact />
 
      <Route
      path="/me"

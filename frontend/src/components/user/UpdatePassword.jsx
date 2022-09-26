@@ -21,7 +21,6 @@ const UpdatePassword = () => {
 
     const navigate = useNavigate()
 
-    const {  user } = useSelector(state => state.auth)
     const {error, isUpdated, loading} = useSelector(state => state.user)
 
     useEffect( () => {
@@ -42,7 +41,7 @@ const UpdatePassword = () => {
             })
         }
 
-    }, [dispatch, alert, error, navigate, isUpdated, user] )
+    }, [dispatch, alert, error, navigate, isUpdated] )
 
     const submitHandler = (e) => {
         e.preventDefault()
