@@ -7,7 +7,7 @@ import MetaData from '../layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails, clearErrors } from '../../actions/productActions'
-
+import { addItemToCart } from '../../actions/cartActions'
 import { useParams } from 'react-router-dom'
 
 const ProductDetails = () => {
@@ -44,10 +44,15 @@ const ProductDetails = () => {
     const decreaseQty =()=> {
         const count = document.querySelector('.count')
 
-        if(count.valueAsNumber <= 1 ) return 
+        if(count.valueAsNumber <= 1 ) return
 
         const qty = count.valueAsNumber -1
         setQuantity(qty)
+    }
+
+    const addToCart = () => {
+        dispatch(addItemToCart(params.id, quantity))
+        alert.success('Item added to cart')
     }
 
   return (
@@ -92,7 +97,7 @@ const ProductDetails = () => {
 
             <span className="btn btn-primary plus" onClick={increaseQty}  >+</span>
         </div>
-         <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4">Add to Cart</button>
+         <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart} >Add to Cart</button>
 
         <hr />
 
