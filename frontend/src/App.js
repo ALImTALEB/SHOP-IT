@@ -10,6 +10,7 @@ import Home from './components/Home'
 import ProductDetails from './components/product/ProductDetails';
 
 import Cart from './components/cart/Cart';
+import Shipping from './components/cart/Shipping';
 
 import Login from './components/user/Login';
 import Register from './components/user/Register';
@@ -76,6 +77,14 @@ const App =() =>{
     />
 
 
+<Route
+     path="/shipping"
+     element={
+      <ProtectedRoute >
+        <Shipping />
+      </ProtectedRoute>
+     }
+    />
 
 
      </Routes>
