@@ -11,6 +11,7 @@ import ProductDetails from './components/product/ProductDetails';
 
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
+import ConfirmOrder from './components/cart/ConfirmOrder';
 
 import Login from './components/user/Login';
 import Register from './components/user/Register';
@@ -86,6 +87,14 @@ const App =() =>{
      }
     />
 
+<Route
+     path="/order/confirm"
+     element={
+      <ProtectedRoute >
+        <ConfirmOrder />
+      </ProtectedRoute>
+     }
+    />
 
      </Routes>
      </div>
