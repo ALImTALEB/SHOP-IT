@@ -5,7 +5,7 @@ import CheckoutSteps from './CheckoutSteps'
 import {useAlert} from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import { createOrder, clearErrors } from '../../actions/orderActions'
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 import axios from 'axios'
 
@@ -31,13 +31,31 @@ const Payment = () => {
 
     const {user} = useSelector(state => state.auth)
     const { cartItems, shippingInfo } = useSelector(state => state.cart)
-    
+    const { error } = useSelector(state => state.newOrder )
+
     useEffect(()=> {
 
+        if(error) {
+            alert.error(error)
+            dispatch(clearErrors())
+        }
 
+    }, [dispatch, alert, error])
 
-    }, [])
+    const order = {
+        orderItems: cartItems,
+        shippingInfo
+    }
+
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
+
+    if(orderInfo) {
+        order.itemsPrice = orderInfo.itemsPrice
+        order.shippingPrice = orderInfo.shippingPrice
+        order.taxPrice = orderInfo.taxPrice
+        order.totalPrice = orderInfo.totalPrice
+    }
+
     const paymentData = {
         amount: Math.round(orderInfo.totalPrice*100)
     }
@@ -83,6 +101,13 @@ const Payment = () => {
                 // payment is processed or not
                 if(result.paymentIntent.status === 'succeeded') {
                     //todo new order
+
+                    order.paymentInfo = {
+                        id: result.paymentIntent.id,
+                        status: result.paymentIntent.status
+                    }
+
+                    dispatch(createOrder(order))
 
                     navigate('/success')
                 } else {
