@@ -12,6 +12,7 @@ import ProductDetails from './components/product/ProductDetails';
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
 import ConfirmOrder from './components/cart/ConfirmOrder';
+import Payment from './components/cart/Payment';
 
 import Login from './components/user/Login';
 import Register from './components/user/Register';
@@ -27,6 +28,11 @@ import NewPassword from './components/user/NewPassword';
 import { loadUser } from './actions/userActions';
 import store from "./store"
 import axios from 'axios';
+
+//payment
+import { Elements } from '@stripe/react-stripe-js'
+import { loadStripe } from '@stripe/stripe-js'
+
 
 const App =() =>{
 
@@ -106,6 +112,19 @@ const App =() =>{
       </ProtectedRoute>
      }
     />
+
+   
+      <Route
+     path="/payment"
+     element={
+       stripeApiKey && <Elements stripe={loadStripe(stripeApiKey)}>
+      <ProtectedRoute >
+        <Payment />
+      </ProtectedRoute>
+      </Elements>
+     }
+    />
+    
 
      </Routes>
      </div>
