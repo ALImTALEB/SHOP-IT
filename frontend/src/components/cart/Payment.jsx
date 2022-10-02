@@ -93,8 +93,6 @@ const Payment = () => {
         } catch(error) {
             document.querySelector('#pay_btn').disabled = false
             alert.error(error.response.data.message)
-
-            console.log(error.response.data)
         }
     }
 
