@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import MetaData from '../layout/MetaData'
 
