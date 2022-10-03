@@ -3,13 +3,13 @@ import { Carousel } from 'react-bootstrap'
 
 import Loader from '../layout/Loader'
 import MetaData from '../layout/MetaData'
-
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductDetails, clearErrors, newReview } from '../../actions/productActions'
 import { addItemToCart } from '../../actions/cartActions'
 import { useParams } from 'react-router-dom'
 import { NEW_REVIEW_RESET } from '../../constants/productConstants'
+import ListReviews from '../review/ListReviews'
 
 const ProductDetails = () => {
 
@@ -229,6 +229,12 @@ const ProductDetails = () => {
 </div>
 
 </div>
+
+{product.reviews && product.reviews.length > 0 && (
+    <ListReviews reviews={product.reviews} />
+  
+)}
+
         </Fragment>
     )}
     </Fragment>
