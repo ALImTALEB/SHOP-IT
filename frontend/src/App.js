@@ -15,6 +15,8 @@ import ConfirmOrder from './components/cart/ConfirmOrder';
 import Payment from './components/cart/Payment';
 import OrderSuccess from './components/cart/OrderSuccess';
 
+import ListOrders from './components/orders/ListOrders';
+
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Profile from './components/user/Profile';
@@ -120,6 +122,15 @@ const App =() =>{
      element={
       <ProtectedRoute >
         <OrderSuccess />
+      </ProtectedRoute>
+     }
+    />
+
+<Route
+     path="/orders/me"
+     element={
+      <ProtectedRoute >
+        <ListOrders />
       </ProtectedRoute>
      }
     />
