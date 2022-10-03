@@ -35,6 +35,7 @@ import axios from 'axios';
 //payment
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
+import OrderDetails from './components/orders/OrderDetails';
 
 
 const App =() =>{
@@ -94,6 +95,16 @@ const App =() =>{
      element={
       <ProtectedRoute >
         <UpdatePassword />
+      </ProtectedRoute>
+     }
+    />
+
+
+<Route
+     path="/order/:id"
+     element={
+      <ProtectedRoute >
+        <OrderDetails />
       </ProtectedRoute>
      }
     />
