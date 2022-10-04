@@ -9,14 +9,18 @@ import Footer from './components/layout/Footer'
 import Home from './components/Home'
 import ProductDetails from './components/product/ProductDetails';
 
+//cart imports
 import Cart from './components/cart/Cart';
 import Shipping from './components/cart/Shipping';
 import ConfirmOrder from './components/cart/ConfirmOrder';
 import Payment from './components/cart/Payment';
+
+//order imports
 import OrderSuccess from './components/cart/OrderSuccess';
 
 import ListOrders from './components/orders/ListOrders';
 
+//user imports
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Profile from './components/user/Profile';
@@ -27,6 +31,9 @@ import UpdatePassword from './components/user/UpdatePassword';
 
 import ForgotPassword from './components/user/ForgotPassword';
 import NewPassword from './components/user/NewPassword';
+
+//admin imports
+import Dashboard from './components/admin/Dashboard';
 
 import { loadUser } from './actions/userActions';
 import store from "./store"
@@ -137,15 +144,20 @@ const App =() =>{
      }
     />
 
+
+
+<Route exact path='/orders/me' element={<ProtectedRoute />}>
+            <Route exact path='/ProtectedRoute' element={<ListOrders />}/>
+          </Route>
+
+
 <Route
-     path="/orders/me"
+     path="/dashboard"
      element={
       <ProtectedRoute >
-        <ListOrders />
+        <Dashboard />
       </ProtectedRoute>
-     }
-    />
-
+     } />
    
       <Route
      path="/payment"
