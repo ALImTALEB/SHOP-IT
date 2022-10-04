@@ -47,9 +47,8 @@ const Payment = () => {
         shippingInfo
     }
 
-    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'))
-
-    if(orderInfo) {
+    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
+    if (orderInfo) {
         order.itemsPrice = orderInfo.itemsPrice
         order.shippingPrice = orderInfo.shippingPrice
         order.taxPrice = orderInfo.taxPrice
@@ -57,16 +56,15 @@ const Payment = () => {
     }
 
     const paymentData = {
-        amount: Math.round(orderInfo.totalPrice*100)
+        amount: Math.round(orderInfo.totalPrice * 100)
     }
 
-    const submitHAndler = async (e) => {
-        e.preventDefault()
+    const submitHandler = async (e) => {
+        e.preventDefault();
 
-        document.querySelector('#pay_btn').disabled = true
+        document.querySelector('#pay_btn').disabled = true;
 
-        let res
-
+        let res;
         try {
 
             const config = {
@@ -77,10 +75,11 @@ const Payment = () => {
 
             res = await axios.post('/api/v1/payment/process', paymentData, config)
 
-            const clientSecret = res.data.client_secret
+            const clientSecret = res.data.client_secret;
+
 
             if (!stripe || !elements) {
-                return
+                return;
             }
 
             const result = await stripe.confirmCardPayment(clientSecret, {
@@ -91,16 +90,15 @@ const Payment = () => {
                         email: user.email
                     }
                 }
-            })
+            });
 
-            if(result.error) {
-                alert.error(result.error.message)
-                document.querySelector('#pay_btn').disabled = false
-
+            if (result.error) {
+                alert.error(result.error.message);
+                document.querySelector('#pay_btn').disabled = false;
             } else {
-                // payment is processed or not
-                if(result.paymentIntent.status === 'succeeded') {
-                    //todo new order
+
+                // The payment is processed or not
+                if (result.paymentIntent.status === 'succeeded') {
 
                     order.paymentInfo = {
                         id: result.paymentIntent.id,
@@ -108,7 +106,7 @@ const Payment = () => {
                     }
 
                     dispatch(createOrder(order))
-
+                    console.log(order)
                     navigate('/success')
                 } else {
                     alert.error('There is some issues while payment processing')
@@ -129,7 +127,7 @@ const Payment = () => {
 
       <div className="row wrapper">
   <div className="col-10 col-lg-5">
-    <form className="shadow-lg" onSubmit={submitHAndler} >
+    <form className="shadow-lg" onSubmit={submitHandler} >
       <h1 className="mb-4">Card Info</h1>
       <div className="form-group">
         <label htmlFor="card_num_field">Card Number</label>
