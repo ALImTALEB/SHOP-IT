@@ -43,6 +43,7 @@ import axios from 'axios';
 import { Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 import OrderDetails from './components/orders/OrderDetails';
+import ProductList from './components/admin/ProductList';
 
 
 const App =() =>{
@@ -82,7 +83,7 @@ const App =() =>{
      <Route
      path="/me"
      element={
-      <ProtectedRoute isAdmin={true} >
+      <ProtectedRoute>
         <Profile />
       </ProtectedRoute>
      }
@@ -144,20 +145,16 @@ const App =() =>{
      }
     />
 
-
-
-<Route exact path='/orders/me' element={<ProtectedRoute />}>
-            <Route exact path='/ProtectedRoute' element={<ListOrders />}/>
-          </Route>
-
-
 <Route
-     path="/dashboard"
+     path="/orders/me"
      element={
       <ProtectedRoute >
-        <Dashboard />
+        <ListOrders />
       </ProtectedRoute>
-     } />
+     }
+    />
+
+
    
       <Route
      path="/payment"
@@ -169,10 +166,35 @@ const App =() =>{
       </Elements>
      }
     />
-    
+     
 
      </Routes>
      </div>
+
+     <Routes>
+
+     <Route
+     path="/dashboard"
+     element={
+      <ProtectedRoute >
+        <Dashboard />
+      </ProtectedRoute>
+     }
+     isAdmin={true}
+      />
+
+<Route
+     path="/admin/products"
+     element={
+      <ProtectedRoute >
+        <ProductList />
+      </ProtectedRoute>
+     }
+     isAdmin={true}
+      />
+
+     </Routes>
+
      <Footer />
     </div>
     </Router>

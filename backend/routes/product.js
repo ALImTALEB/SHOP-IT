@@ -9,7 +9,8 @@ const { getProducts,
         deleteProduct,
         createProductReview,
         getProductReviews,
-        deleteReview
+        deleteReview,
+        getAdminProducts
      } = require('../controllers/productController')
 
 
@@ -17,6 +18,7 @@ const { getProducts,
 
 
 router.get('/products', getProducts);
+router.get('/admin/products', getAdminProducts);
 
 router.get('/product/:id', getSingleProduct)
 
