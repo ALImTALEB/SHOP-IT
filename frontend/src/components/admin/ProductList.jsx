@@ -3,22 +3,24 @@ import React, {Fragment, useEffect} from 'react'
 import { MDBDataTable } from 'mdbreact'
 import Loader from '../layout/Loader'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import MetaData from '../layout/MetaData'
-import { useNavigate } from 'react-router-dom'
 
 import { useAlert } from 'react-alert'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { getAdminProducts, clearErrors } from '../../actions/productActions'
+import { getAdminProducts, clearErrors, deleteProduct } from '../../actions/productActions'
 import Sidebar from './Sidebar'
+import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
 
 const ProductList = () => {
 
     const alert = useAlert()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const { loading, error,  products } = useSelector(state => state.products)
+    const { error: deleteError, isDeleted } = useSelector(state => state.product)
 
     useEffect( () => {
         dispatch(getAdminProducts())
@@ -27,7 +29,19 @@ const ProductList = () => {
             alert.error(error)
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, error] )
+
+        if(deleteError) {
+            alert.error(deleteError)
+            dispatch(clearErrors())
+        }
+
+        if(isDeleted) {
+            alert.success('product deleted successfully')
+            navigate('/admin/products')
+            dispatch({ type : DELETE_PRODUCT_RESET })
+        }
+
+    }, [dispatch, alert, error, deleteError, isDeleted, navigate] )
 
     const setProducts = () => {
         const data = {
@@ -66,7 +80,7 @@ const ProductList = () => {
                 price: `$${product.price}`,
                 stock: product.stock,
                 actions: <Fragment>
-                    <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
+                    <Link to={`/admin/product/${product._id}`} onClick={ () => deleteProductHandler(product._id) } className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
                     </Link>
                     <button className="btn btn-danger py-1 px-2 ml-2" >
@@ -79,7 +93,9 @@ const ProductList = () => {
         return data;
     }
 
-  
+  const deleteProductHandler = (id) => {
+    dispatch(deleteProduct(id))
+  }
 
   return (
     <Fragment>

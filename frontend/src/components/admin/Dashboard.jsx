@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const Dashboard = () => {
 
     const dispatch = useDispatch()
-    const { products } = useSelector(state => state.products)
+    const { loading , products } = useSelector(state => state.products)
 
     let outOfStock = 0
     products.forEach( product => {
@@ -26,8 +26,10 @@ const Dashboard = () => {
 
   return (
     <Fragment>
+<MetaData title={'Dashboard'} />
 
-   <div classname="row">
+{ loading ? <Loader /> : 
+<div classname="row">
    <div className="ml-n3 col-12 col-md-2">
                     <Sidebar />
                 </div>
@@ -95,6 +97,8 @@ const Dashboard = () => {
     </div>
   </div>
 </div>
+ }
+  
 
 
 </Fragment>
