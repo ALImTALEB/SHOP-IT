@@ -38,6 +38,7 @@ import { useSelector } from 'react-redux';
 import { loadUser } from './actions/userActions';
 import store from "./store"
 import axios from 'axios';
+import UpdateProduct from './components/admin/UpdateProduct';
 
 //payment
 import { Elements } from '@stripe/react-stripe-js'
@@ -206,7 +207,20 @@ const App =() =>{
      isAdmin={true}
       />
 
+<Route
+     path="/admin/product/:id"
+     element={
+      <ProtectedRoute >
+        <UpdateProduct />
+      </ProtectedRoute>
+     }
+     isAdmin={true}
+      />
+
+
      </Routes>
+
+
 
      
      {!loading && (!isAuthenticated || user.role !== 'admin') && (

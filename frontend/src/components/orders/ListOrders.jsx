@@ -1,32 +1,29 @@
-import React, {Fragment, useEffect} from 'react'
-
+import React, { Fragment, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { MDBDataTable } from 'mdbreact'
+
+import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
 
-import { Link } from 'react-router-dom'
-import MetaData from '../layout/MetaData'
-
 import { useAlert } from 'react-alert'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { myOrders, clearErrors } from '../../actions/orderActions'
 
-
 const ListOrders = () => {
 
-    const alert = useAlert()
-    const dispatch = useDispatch()
+    const alert = useAlert();
+    const dispatch = useDispatch();
 
-    const { loading, error,  orders } = useSelector(state => state.myOrders)
+    const { loading, error, orders } = useSelector(state => state.myOrders);
 
-    useEffect( () => {
-        dispatch(myOrders())
+    useEffect(() => {
+        dispatch(myOrders());
 
-        if(error) {
-            alert.error(error)
+        if (error) {
+            alert.error(error);
             dispatch(clearErrors())
         }
-    }, [dispatch, alert, error] )
+    }, [dispatch, alert, error])
 
     const setOrders = () => {
         const data = {
@@ -55,7 +52,7 @@ const ListOrders = () => {
                     label: 'Actions',
                     field: 'actions',
                     sort: 'asc'
-                }
+                },
             ],
             rows: []
         }
@@ -75,11 +72,11 @@ const ListOrders = () => {
             })
         })
 
-        return data
+        return data;
     }
 
-  return (
-    <Fragment>
+    return (
+        <Fragment>
 
             <MetaData title={'My Orders'} />
 
@@ -96,7 +93,7 @@ const ListOrders = () => {
             )}
 
         </Fragment>
-  )
+    )
 }
 
 export default ListOrders

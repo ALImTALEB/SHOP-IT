@@ -1,7 +1,7 @@
-import React, {Fragment, useState} from 'react'
-import {countries} from 'countries-list'
-import MetaData from '../layout/MetaData'
+import React, { Fragment, useState } from 'react'
+import { countries } from 'countries-list'
 
+import MetaData from '../layout/MetaData'
 import CheckoutSteps from './CheckoutSteps'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,37 +10,37 @@ import { useNavigate } from 'react-router-dom'
 
 const Shipping = () => {
 
+
+    const navigate = useNavigate()
     const countriesList = Object.values(countries)
 
     const { shippingInfo } = useSelector(state => state.cart)
 
-    const navigate=useNavigate()
-
     const [address, setAddress] = useState(shippingInfo.address)
     const [city, setCity] = useState(shippingInfo.city)
     const [postalCode, setPostalCode] = useState(shippingInfo.postalCode)
-    const [phoneNumber, setPhoneNumber] = useState(shippingInfo.phoneNumber)
+    const [phoneNo, setPhoneNo] = useState(shippingInfo.phoneNo)
     const [country, setCountry] = useState(shippingInfo.country)
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const submitHandler = (e) => {
         e.preventDefault()
 
-        dispatch(saveShippingInfo({ address, city, phoneNumber, postalCode, country }))
+        dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }))
         navigate('/order/confirm')
     }
 
-  return (
-    <Fragment>
+    return (
+        <Fragment>
 
-      <MetaData title={'Shipping Info'} />
+            <MetaData title={'Shipping Info'} />
 
-      <CheckoutSteps shipping />
+            <CheckoutSteps shipping />
 
-        <div className="row wrapper">
+            <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={submitHandler} >
+                    <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mb-4">Shipping Info</h1>
                         <div className="form-group">
                             <label htmlFor="address_field">Address</label>
@@ -49,7 +49,7 @@ const Shipping = () => {
                                 id="address_field"
                                 className="form-control"
                                 value={address}
-                                onChange={ (e) => setAddress(e.target.value) }
+                                onChange={(e) => setAddress(e.target.value)}
                                 required
                             />
                         </div>
@@ -61,7 +61,7 @@ const Shipping = () => {
                                 id="city_field"
                                 className="form-control"
                                 value={city}
-                                onChange={ (e) => setCity(e.target.value) }
+                                onChange={(e) => setCity(e.target.value)}
                                 required
                             />
                         </div>
@@ -72,8 +72,8 @@ const Shipping = () => {
                                 type="phone"
                                 id="phone_field"
                                 className="form-control"
-                                value={phoneNumber}
-                                onChange={ (e) => setPhoneNumber(e.target.value) }
+                                value={phoneNo}
+                                onChange={(e) => setPhoneNo(e.target.value)}
                                 required
                             />
                         </div>
@@ -85,7 +85,7 @@ const Shipping = () => {
                                 id="postal_code_field"
                                 className="form-control"
                                 value={postalCode}
-                                onChange={ (e) => setPostalCode(e.target.value) }
+                                onChange={(e) => setPostalCode(e.target.value)}
                                 required
                             />
                         </div>
@@ -96,18 +96,15 @@ const Shipping = () => {
                                 id="country_field"
                                 className="form-control"
                                 value={country}
-                                onChange={ (e) => setCountry(e.target.value) }
+                                onChange={(e) => setCountry(e.target.value)}
                                 required
                             >
 
                                 {countriesList.map(country => (
-
-                                    <option key={country.name} value={country.name} >
+                                    <option key={country.name} value={country.name}>
                                         {country.name}
                                     </option>
-
-                                ) )}
-                                    
+                                ))}
 
                             </select>
                         </div>
@@ -122,8 +119,9 @@ const Shipping = () => {
                     </form>
                 </div>
             </div>
-    </Fragment>
-  )
+
+        </Fragment>
+    )
 }
 
 export default Shipping

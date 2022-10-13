@@ -160,10 +160,10 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 
         const { data } = await axios.put(`/api/v1/admin/product/${id}`, productData, config)
 
-        dispatch({ 
+        dispatch({
             type: UPDATE_PRODUCT_SUCCESS,
             payload: data.success
-         })
+        })
 
     } catch (error) {
         dispatch({

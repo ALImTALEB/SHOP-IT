@@ -1,47 +1,45 @@
-import React, {Fragment, useEffect} from 'react'
-
-import { MDBDataTable } from 'mdbreact'
-import Loader from '../layout/Loader'
-
+import React, { Fragment, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { MDBDataTable } from 'mdbreact'
+
 import MetaData from '../layout/MetaData'
+import Loader from '../layout/Loader'
+import Sidebar from './Sidebar'
 
 import { useAlert } from 'react-alert'
-
 import { useDispatch, useSelector } from 'react-redux'
-import { getAdminProducts, clearErrors, deleteProduct } from '../../actions/productActions'
-import Sidebar from './Sidebar'
+import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions'
 import { DELETE_PRODUCT_RESET } from '../../constants/productConstants'
 
-const ProductList = () => {
+const ProductsList = () => {
 
-    const alert = useAlert()
-    const dispatch = useDispatch()
+    const alert = useAlert();
+    const dispatch = useDispatch();
     const navigate = useNavigate()
 
-    const { loading, error,  products } = useSelector(state => state.products)
+    const { loading, error, products } = useSelector(state => state.products);
     const { error: deleteError, isDeleted } = useSelector(state => state.product)
 
-    useEffect( () => {
-        dispatch(getAdminProducts())
+    useEffect(() => {
+        dispatch(getAdminProducts());
 
-        if(error) {
-            alert.error(error)
+        if (error) {
+            alert.error(error);
             dispatch(clearErrors())
         }
 
-        if(deleteError) {
-            alert.error(deleteError)
+        if (deleteError) {
+            alert.error(deleteError);
             dispatch(clearErrors())
         }
 
-        if(isDeleted) {
-            alert.success('product deleted successfully')
-            navigate('/admin/products')
-            dispatch({ type : DELETE_PRODUCT_RESET })
+        if (isDeleted) {
+            alert.success('Product deleted successfully');
+            navigate('/admin/products');
+            dispatch({ type: DELETE_PRODUCT_RESET })
         }
 
-    }, [dispatch, alert, error, deleteError, isDeleted, navigate] )
+    }, [dispatch, alert, error, deleteError, isDeleted, navigate])
 
     const setProducts = () => {
         const data = {
@@ -73,6 +71,7 @@ const ProductList = () => {
             ],
             rows: []
         }
+
         products.forEach(product => {
             data.rows.push({
                 id: product._id,
@@ -80,10 +79,10 @@ const ProductList = () => {
                 price: `$${product.price}`,
                 stock: product.stock,
                 actions: <Fragment>
-                    <Link to={`/admin/product/${product._id}`} onClick={ () => deleteProductHandler(product._id) } className="btn btn-primary py-1 px-2">
+                    <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
                     </Link>
-                    <button className="btn btn-danger py-1 px-2 ml-2" >
+                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteProductHandler(product._id)}>
                         <i className="fa fa-trash"></i>
                     </button>
                 </Fragment>
@@ -93,40 +92,38 @@ const ProductList = () => {
         return data;
     }
 
-  const deleteProductHandler = (id) => {
-    dispatch(deleteProduct(id))
-  }
+    const deleteProductHandler = (id) => {
+        dispatch(deleteProduct(id))
+    }
 
-  return (
-    <Fragment>
-    <MetaData title={'All Products'} />
-    <div className="row">
-        <div className="col-12 col-md-2">
-            <Sidebar />
-        </div>
+    return (
+        <Fragment>
+            <MetaData title={'All Products'} />
+            <div className="row">
+                <div className="col-12 col-md-2">
+                    <Sidebar />
+                </div>
 
-        <div className="col-12 col-md-10">
-            <Fragment>
-                <h1 className="my-5">
-                    All Products
-                </h1>
+                <div className="col-12 col-md-10">
+                    <Fragment>
+                        <h1 className="my-5">All Products</h1>
 
-                {loading ? <Loader /> : (
-                    <MDBDataTable
-                    data={setProducts()}
-                    className="px-3"
-                    bordered
-                    striped
-                    hover
-                />
-                )  }
+                        {loading ? <Loader /> : (
+                            <MDBDataTable
+                                data={setProducts()}
+                                className="px-3"
+                                bordered
+                                striped
+                                hover
+                            />
+                        )}
 
-            </Fragment>
-        </div>
-    </div>
+                    </Fragment>
+                </div>
+            </div>
 
-    </Fragment>
-  )
+        </Fragment>
+    )
 }
 
-export default ProductList
+export default ProductsList
