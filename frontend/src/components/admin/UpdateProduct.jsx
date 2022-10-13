@@ -1,5 +1,4 @@
 import React, {Fragment, useState ,useEffect} from 'react'
-import Loader from '../layout/Loader'
 
 import MetaData from '../layout/MetaData'
 import { useNavigate, useParams } from 'react-router-dom'

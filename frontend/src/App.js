@@ -39,6 +39,7 @@ import { loadUser } from './actions/userActions';
 import store from "./store"
 import axios from 'axios';
 import UpdateProduct from './components/admin/UpdateProduct';
+import OrdersList from './components/admin/OrdersList';
 
 //payment
 import { Elements } from '@stripe/react-stripe-js'
@@ -192,6 +193,16 @@ const App =() =>{
      element={
       <ProtectedRoute >
         <ProductList />
+      </ProtectedRoute>
+     }
+     isAdmin={true}
+      />
+      
+      <Route
+     path="/admin/orders"
+     element={
+      <ProtectedRoute >
+        <OrdersList />
       </ProtectedRoute>
      }
      isAdmin={true}
