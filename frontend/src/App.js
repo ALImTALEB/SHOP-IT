@@ -40,6 +40,8 @@ import store from "./store"
 import axios from 'axios';
 import UpdateProduct from './components/admin/UpdateProduct';
 import OrdersList from './components/admin/OrdersList';
+import ProcessOrder from './components/admin/ProcessOrder';
+
 
 //payment
 import { Elements } from '@stripe/react-stripe-js'
@@ -213,6 +215,16 @@ const App =() =>{
      element={
       <ProtectedRoute >
         <NewProduct />
+      </ProtectedRoute>
+     }
+     isAdmin={true}
+      />
+
+<Route
+     path="/admin/order/:id"
+     element={
+      <ProtectedRoute >
+        <ProcessOrder />
       </ProtectedRoute>
      }
      isAdmin={true}
