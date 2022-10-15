@@ -12,6 +12,12 @@ import {
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_FAIL,
     UPDATE_PASSWORD_RESET,
+
+    UPDATE_USER_REQUEST,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_FAIL,
+    UPDATE_USER_RESET,
+
     UPDATE_PROFILE_REQUEST,
     UPDATE_PROFILE_SUCCESS,
     UPDATE_PROFILE_FAIL,
@@ -101,6 +107,7 @@ export const userReducer = (state = {}, action ) => {
 
         case UPDATE_PROFILE_REQUEST:
         case UPDATE_PASSWORD_REQUEST:
+        case UPDATE_USER_REQUEST:
             return {
                 ...state,
                 loading: true
@@ -108,6 +115,7 @@ export const userReducer = (state = {}, action ) => {
 
         case UPDATE_PROFILE_SUCCESS:
         case UPDATE_PASSWORD_SUCCESS:
+            case UPDATE_USER_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -116,6 +124,7 @@ export const userReducer = (state = {}, action ) => {
 
         case UPDATE_PROFILE_RESET:
         case UPDATE_PASSWORD_RESET:
+            case UPDATE_USER_RESET:
             return {
                 ...state,
                 isUpdated: false
@@ -123,6 +132,7 @@ export const userReducer = (state = {}, action ) => {
 
         case UPDATE_PROFILE_FAIL:
         case UPDATE_PASSWORD_FAIL:
+            case UPDATE_USER_FAIL:
             return {
                 ...state,
                 loading: false,
