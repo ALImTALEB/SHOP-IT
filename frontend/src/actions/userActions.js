@@ -22,6 +22,10 @@ import {
     FORGOT_PASSWORD_SUCCESS,
     FORGOT_PASSWORD_FAIL,
 
+    ALL_USERS_REQUEST,
+    ALL_USERS_SUCCESS,
+    ALL_USERS_FAIL,
+
     CLEAR_ERRORS,
     NEW_PASSWORD_REQUEST,
     NEW_PASSWORD_SUCCESS,
@@ -241,7 +245,27 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     }
 }
 
+// get all users
+export const allUsers = () => async (dispatch) => {
+    try {
 
+        dispatch({ type: ALL_USERS_REQUEST })
+
+        const { data } = await axios.get('/api/v1/admin/users')
+
+        dispatch({
+            type: ALL_USERS_SUCCESS,
+            payload: data.users
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: ALL_USERS_FAIL,
+            payload: error.response.data.message
+        })
+        
+    }
+}
 
 // clear errors
 export const clearErrors = () => async (dispatch) => {

@@ -41,6 +41,7 @@ import axios from 'axios';
 import UpdateProduct from './components/admin/UpdateProduct';
 import OrdersList from './components/admin/OrdersList';
 import ProcessOrder from './components/admin/ProcessOrder';
+import UsersList from './components/admin/UsersList';
 
 
 //payment
@@ -225,6 +226,17 @@ const App =() =>{
      element={
       <ProtectedRoute >
         <ProcessOrder />
+      </ProtectedRoute>
+     }
+     isAdmin={true}
+      />
+
+      
+<Route
+     path="/admin/users"
+     element={
+      <ProtectedRoute >
+        <UsersList />
       </ProtectedRoute>
      }
      isAdmin={true}
