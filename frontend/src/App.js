@@ -42,6 +42,7 @@ import UpdateProduct from './components/admin/UpdateProduct';
 import OrdersList from './components/admin/OrdersList';
 import ProcessOrder from './components/admin/ProcessOrder';
 import UsersList from './components/admin/UsersList';
+import UpdateUser from './components/admin/UpdateUser';
 
 
 //payment
@@ -237,6 +238,16 @@ const App =() =>{
      element={
       <ProtectedRoute >
         <UsersList />
+      </ProtectedRoute>
+     }
+     isAdmin={true}
+      />
+
+<Route
+     path="/admin/user/:id"
+     element={
+      <ProtectedRoute >
+        <UpdateUser />
       </ProtectedRoute>
      }
      isAdmin={true}
