@@ -20,6 +20,11 @@ import {
        NEW_REVIEW_REQUEST,
        NEW_REVIEW_SUCCESS,
        NEW_REVIEW_FAIL,
+
+       GET_REVIEWS_REQUEST,
+       GET_REVIEWS_SUCCESS,
+       GET_REVIEWS_FAIL,
+
        DELETE_PRODUCT_REQUEST,
        DELETE_PRODUCT_SUCCESS,
        DELETE_PRODUCT_FAIL
@@ -189,6 +194,29 @@ export const getAdminProducts = () => async (dispatch) => {
 
         dispatch({
             type: ADMIN_PRODUCTS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+
+// get product reviews
+export const getProductReviews = (id) => async (dispatch) => {
+
+    try {
+
+        dispatch({ type: GET_REVIEWS_REQUEST })
+
+        const { data } = await axios.get(`/api/v1/reviews?id=${id}`)
+
+        dispatch({
+            type: GET_REVIEWS_SUCCESS,
+            payload: data.reviews
+        })
+        
+    } catch (error) {
+
+        dispatch({
+            type: GET_REVIEWS_FAIL,
             payload: error.response.data.message
         })
     }

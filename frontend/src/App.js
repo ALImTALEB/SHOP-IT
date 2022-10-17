@@ -51,6 +51,7 @@ import { loadStripe } from '@stripe/stripe-js'
 import OrderDetails from './components/orders/OrderDetails';
 import ProductList from './components/admin/ProductList';
 import NewProduct from './components/admin/NewProduct';
+import ProductReviews from './components/admin/ProductReviews';
 
 
 const App =() =>{
@@ -258,6 +259,16 @@ const App =() =>{
      element={
       <ProtectedRoute >
         <UpdateProduct />
+      </ProtectedRoute>
+     }
+     isAdmin={true}
+      />
+
+<Route
+     path="/admin/reviews"
+     element={
+      <ProtectedRoute >
+        <ProductReviews />
       </ProtectedRoute>
      }
      isAdmin={true}
